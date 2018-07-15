@@ -1,0 +1,38 @@
+{
+  "name": "fsa-serverless-messaging",
+  "version": "1.0.0",
+  "description": "A cost-effective, rapid solution for a (currently) non-socket based messaging system + notifications using the serverless framework, DynamoDB, AWS Cognito & React. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikhaelbendavid/fsa-serverless-messaging.git"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-source-map-support": "^1.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "jest": "^21.2.1",
+    "serverless-offline": "^3.20.3",
+    "serverless-webpack": "^5.1.0",
+    "webpack": "^4.2.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.275.1",
+    "babel-runtime": "^6.26.0",
+    "source-map-support": "^0.4.18",
+    "uuid": "^3.3.2"
+  },
+  "author": "Michael Litchev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikhaelbendavid/fsa-serverless-messaging/issues"
+  },
+  "homepage": "https://github.com/mikhaelbendavid/fsa-serverless-messaging#readme"
+}

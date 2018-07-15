@@ -1,0 +1,75 @@
+service: fsa-sls-messaging
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  region: us-west-1
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-west-1:*:*"
+    - Effect: Allow
+      Action:
+        - ssm:GetParameters
+      Resource: "*"
+
+functions:
+  add-message:
+    handler: add-message.main
+    events:
+      - http:
+          path: messages
+          method: post
+          cors: true
+          authorizer: aws_iam
+  list-messages:
+    handler: list-messages.main
+    events:
+      - http:
+           path: messages/{id}
+           method: get
+           cors: true
+           authorizer: aws_iam
+  add-message-notification:
+      handler: add-message-notification.main
+      events:
+        - http:
+            path: notifications
+            method: post
+            cors: true
+            authorizer: aws_iam
+  mark-notification-read:
+      handler: mark-notification-read.main
+      events:
+        - http:
+            path: notifications/item/{id}
+            method: put
+            cors: true
+            authorizer: aws_iam
+  list-notifications:
+      handler: list-notifications.main
+      events:
+        - http:
+            path: notifications/all/{id}
+            method: get
+            cors: true
+            authorizer: aws_iam
